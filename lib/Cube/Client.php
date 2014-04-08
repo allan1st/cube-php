@@ -36,6 +36,12 @@ class Client
         return new Client($conn);
     }
 
+    public static function createUdpClient(array $args = array())
+    {
+        $conn = new Connection\UdpConnection($args);
+        return new Client($conn);
+    }
+
     public function __call($name, $args)
     {
         if (!Command::isValidCommand($name)) {
