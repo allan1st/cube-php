@@ -16,7 +16,7 @@ class UdpConnection extends Connection {
     public function eventPut($args)
     {
         $args = \Cube\Command::prepPayload($args);
-        $json = json_encode($args[0]);
+        $json = json_encode($args);
         $res = socket_sendto($this->getSock(), $json, strlen($json), 0, $this->udp_host, $this->udp_port);
         return $res;
     }
