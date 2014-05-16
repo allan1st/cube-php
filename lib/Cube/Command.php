@@ -82,16 +82,6 @@ class Command
         // Wrap the "dict" in an array if it isn't already wrapped
         // Cube expects lists of entries
         if (isset($args['data'])) $args = array($args);
-
-        foreach ($args as &$entry) {
-            if (count(array_diff(array_keys($entry), self::getOptions(self::SEND))) !== 0)
-                throw new \Cube\Exception\InvalidCubeEvent();
-            $time = isset($entry['time']) ? $entry['time'] : time();
-            if (is_string($time))
-                $time = strtotime($time);
-            $entry['time'] = date('c', $time);
-        }
-
         return $args;
     }
 }
